@@ -1,0 +1,5 @@
+some:
+  nested:
+    yaml: true
+  arr:
+    - 1
