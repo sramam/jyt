@@ -1,26 +1,9 @@
 import * as cp from 'child_process';
 
-// export function spyConsole() {
-//   let spy: any = {}
-
-//   beforeEach(() => {
-//     spy.console = jest.spyOn(console, 'log').mockImplementation(() => { })
-//   })
-
-//   afterEach(() => {
-//     spy.console.mockClear()
-//   })
-
-//   afterAll(() => {
-//     spy.console.mockRestore()
-//   })
-
-//   return spy
-// }
 
 describe(`cli`, () => {
   it(`cli_node.js`, async () => {
-    const result = cp.execSync('node build/cli_node.js --help');
+    const result = cp.execSync('node dist/cli_node.js --help');
     expect(result.toString('utf8')).toMatchInlineSnapshot(`
 "No-fuss CLI to get/set json/yaml properties in file
 

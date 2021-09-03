@@ -21,14 +21,16 @@ describe('jyt', () => {
   let fnames: {
     json: string;
     yaml: string;
+    new_file: string;
   };
 
   beforeAll(async () => {
-    tmpdir = await fs_.mkdtemp('jyt');
-
+    await fs_.mkdir(".tmp");
+    tmpdir = await fs_.mkdtemp('.tmp/jyt-');
     fnames = {
       json: `${tmpdir}/sample.json`,
       yaml: `${tmpdir}/sample.yaml`,
+      new_file: `${tmpdir}/new_file`,
     };
 
     await fs_.copyFile(`${__dirname}/fixtures/sample.json`, fnames.json);
@@ -315,5 +317,52 @@ describe('jyt', () => {
         boolean-false: false
       "
     `);
+  });
+
+  it(`new_file.json`, async () => {
+    const fname = `${fnames.new_file}.json`;
+    await jyt({
+      args: [fname, 'some.number', '1', 'number'],
+      imports,
+    });
+    const result = await jyt({
+      args: [fname],
+      imports,
+    });
+    expect(result).toMatchInlineSnapshot(`
+      "{
+        \\"some\\": {
+          \\"number\\": 1
+        }
+      }"
+    `);
+  });
+
+  it(`new_file.yaml`, async () => {
+    const fname = `${fnames.new_file}.yaml`;
+    await jyt({
+      args: [fname, 'some.number', '1', 'number'],
+      imports,
+    });
+    const result = await jyt({
+      args: [fname],
+      imports,
+    });
+    expect(result).toMatchInlineSnapshot(`
+      "some:
+        number: 1
+      "
+    `);
+  });
+
+  it(`new_file.random`, async () => {
+    const fname = `${fnames.new_file}.random`;
+    await expect(async () => {
+      await jyt({
+        args: [fname, 'some.number', '1', 'number'],
+        imports,
+      });
+    })
+      .rejects.toThrow('no such file or directory')
   });
 });

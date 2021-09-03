@@ -10,7 +10,10 @@ node_modules/
 coverage
 
 # Transpiled files
-# build/
+# dist/
+
+# tmp file
+.tmp
 
 # VS Code
 .vscode

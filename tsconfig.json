@@ -16,8 +16,7 @@
     "noUnusedParameters": true,
     "noImplicitAny": false,
     "noImplicitThis": false,
-    "strictNullChecks": false,
-    "rootDir": "/src"
+    "strictNullChecks": false
   },
   "include": ["src/**/*", "__tests__/**/*"],
   "exclude": ["**/cli_deno.ts", "deps.js"]

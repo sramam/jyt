@@ -102,8 +102,19 @@ export default async function ({
   }
 
   async function parse(filepath: string) {
-    const input = await fs.readTextFile(filepath);
+    let input: string;
     let contents: Record<string, unknown>;
+    try {
+      input = await fs.readTextFile(filepath);
+    } catch (err) {
+      // failed to open file.
+      if (filepath.match(/\.json$/)) {
+        return { input: `{}`, contents: {}, format: FORMAT.JSON }
+      } else if (filepath.match(/\.(yaml|yml)/)) {
+        return { input: ``, contents: {}, format: FORMAT.YAML }
+      }
+      throw err;
+    }
     try {
       contents = JSON.parse(input);
       return { input, contents, format: FORMAT.JSON };

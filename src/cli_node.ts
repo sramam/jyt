@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /* istanbul ignore file */
 // while we don't get coverage, we have a test to exercise this
 // code. Not sure jest will provide coverage collation across sub-processes
