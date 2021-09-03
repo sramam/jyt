@@ -24,7 +24,7 @@ describe('jyt', () => {
   };
 
   beforeAll(async () => {
-    tmpdir = await fs_.mkdtemp('jy_ho');
+    tmpdir = await fs_.mkdtemp('jyt');
 
     fnames = {
       json: `${tmpdir}/sample.json`,
