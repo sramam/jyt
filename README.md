@@ -1,5 +1,5 @@
 # jyt
-`jyt` (pronounced "jai ho"), is a no-fuss CLI to get/set json/yaml config files.
+`jyt` is a no-fuss CLI to get/set json/yaml config files.
 
 The only assumption it makes is that file-contents are an object (as opposed to an array or other valid json/yaml forms). The primary purpose of the utility is to get/set
 values of config files from scripts.
