@@ -47,6 +47,6 @@
     "/dep.js"
   ],
   "bin": {
-    "jyt": "build/src/cli_node.js"
+    "jyt": "build/cli_node.js"
   }
 }
